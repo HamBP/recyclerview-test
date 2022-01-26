@@ -5,6 +5,10 @@
         <variable
             name="item"
             type="org.algosketch.datebindingtest.ExampleItem" />
+
+        <variable
+            name="viewModel"
+            type="org.algosketch.datebindingtest.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +21,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="여기 적힌 내용이 토스트 메시지로 출력될 거야!"
-            android:text="@{item.content}"/>
+            android:text="@{item.content}"
+            android:onClick="@{(view)->viewModel.showToastMessage(view, item.content)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
