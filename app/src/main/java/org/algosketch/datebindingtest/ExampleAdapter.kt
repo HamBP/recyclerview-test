@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.algosketch.datebindingtest.databinding.ItemExampleBinding
 
-class ExampleAdapter : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+class ExampleAdapter(private val viewModel: MainViewModel) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
     lateinit var exampleList: List<ExampleItem>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
@@ -14,14 +14,16 @@ class ExampleAdapter : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
-        holder.bind(exampleList[position])
+        holder.bind(viewModel, exampleList[position])
     }
 
     override fun getItemCount() = exampleList.size
 
     class ExampleViewHolder private constructor(val binding: ItemExampleBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ExampleItem) {
+        fun bind(viewModel: MainViewModel, item: ExampleItem) {
             binding.item = item
+            binding.viewModel = viewModel
+            binding.executePendingBindings()
         }
 
         companion object {

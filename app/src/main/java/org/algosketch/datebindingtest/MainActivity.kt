@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupAdapter() {
-        binding.exampleRecyclerView.adapter = ExampleAdapter()
+        binding.exampleRecyclerView.adapter = ExampleAdapter(viewModel)
     }
 }
